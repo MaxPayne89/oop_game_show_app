@@ -1,6 +1,11 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-const game = new Game();
-game.startGame();
-console.log(`Active phrase is: ${game.activePhrase.phrase}`)
+let game;
+
+//event listener on button
+const buttonStartGame = document.querySelector("button#btn__reset");
+buttonStartGame.addEventListener('click', () => {
+    game = new Game();
+    game.startGame()
+})
