@@ -19,7 +19,18 @@ class Phrase {
         phraseDiv.querySelector('ul').insertAdjacentHTML("beforeend",arrReducer);
     }
 
-    checkLetter(){}
+    checkLetter(letter){
+        return this.phrase.includes(letter);
+    }
 
-    showMatchedLetter(){}
+    showMatchedLetter(letter){
+        const phraseChars = document.querySelectorAll('div#phrase > ul > li');
+        const phraseToArr = Array.from(phraseChars);
+        const filtered = phraseToArr.filter(element => {
+            return element.textContent === letter
+        })
+        filtered.map(element => {
+            element.className = `show letter ${element.textContent}`
+        })
+    }
 }

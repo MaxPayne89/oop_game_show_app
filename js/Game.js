@@ -24,17 +24,51 @@ class Game {
 
     handleInteraction(){}
 
-    removeLife(){}
+    removeLife(){
+        if(this.missed >= 5){
+            this.gameOver(this.checkForWin())
+        } else {
+            //select the list of hearts
+            const hearts = document.querySelectorAll('.tries > img');
+            const heartsArr = Array.from(hearts);
+            heartsArr[this.missed].setAttribute('src', "images/lostHeart.png");
+            this.missed += 1;
+        }
+    }
 
-    checkForWin(){}
+    checkForWin(){
+        const phraseChars = document.querySelectorAll('div#phrase > ul > li');
+        const arr = Array.from(phraseChars);
+        const numberOfHide = arr.reduce((acc, element) => {
+            if(element.classList.contains("hide")){
+                return acc + 1
+            } else {
+                return acc
+            }
+        },0)
+        return numberOfHide === 0
+    }
 
-    gameOver(){}
+    gameOver(gameWon){
+        //show overlay again
+        const div = document.querySelector('div#overlay');
+        div.style.visibility = 'visible';
+        //update game-over message
+        const h1 = document.querySelector('#game-over-message');
+        if(gameWon){
+            h1.textContent = "Good job, mandem";
+            div.className = "win"
+        } else {
+            h1.textContent = "Sorry, mandem. You suck... Get it together next time";
+            div.className = "lose"
+        }
+    }
 
     //create some phrases to be used in the game
     createPhrases(){
         let arrOfPhrases = []; 
         arrOfPhrases.push(new Phrase("Do your Job"));
-        arrOfPhrases.push(new Phrase("Mo money, mo problems"));
+        arrOfPhrases.push(new Phrase("Mo money mo problems"));
         arrOfPhrases.push(new Phrase("Just do it"));
         arrOfPhrases.push(new Phrase("What would Kobe do"));
         arrOfPhrases.push(new Phrase("We talking about practice"));
