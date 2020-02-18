@@ -22,7 +22,9 @@ class Game {
         return arr[rand]
     }
 
-    handleInteraction(){}
+    handleInteraction(button){
+        console.log(button)
+    }
 
     removeLife(){
         if(this.missed >= 5){
