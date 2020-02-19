@@ -23,7 +23,20 @@ class Game {
     }
 
     handleInteraction(button){
-        console.log(button)
+        //disable the button
+        button.disabled = true;
+        //if not part of the sentence, remove life and add wrong css class to the button
+        const phrase = this.activePhrase;
+        if(phrase.checkLetter(button.textContent)){
+            phrase.showMatchedLetter(button.textContent);
+            button.classList = "chosen"
+            if(this.checkForWin()){
+                this.gameOver(true);
+            }
+        } else {
+            game.removeLife()
+            button.classList = "wrong";
+        }
     }
 
     removeLife(){

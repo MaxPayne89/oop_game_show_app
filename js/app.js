@@ -14,6 +14,6 @@ buttonStartGame.addEventListener('click', () => {
 const keyboard = document.querySelector('div#qwerty');
 keyboard.addEventListener('click', (e) => {
     if(e.target.classList.contains("key")) {
-        game.handleInteraction(e.target)
+        game.handleInteraction(e.target);
     }
 });
